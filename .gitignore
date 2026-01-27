@@ -1,0 +1,13 @@
+# Obsidian internals
+.obsidian/workspace.json
+.obsidian/cache
+.obsidian/workspace
+
+# Obsidian plugins
+.obsidian/plugins/*
+!.obsidian/plugins/README.md
+
+# Local / personal stuff
+Stuff/Ideas/
+
+
