@@ -1,0 +1,19 @@
+#### WMI (Windows Management Instrumentation)
+- **Windows Management Instrumentation** es la infraestructura principal de Microsoft para la gestión de datos y operaciones en el sistema operativo Windows la cual permite consultar, monitorear y controlar prácticamente cualquier aspecto del mismo, hardware y software, tanto **local como remotamente**.
+- Es una implementación de Microsoft del estándar **CIM (Common Information Model)** la cual proporciona una **API unificada** para acceder a información de: Sistema Operativo, Procesos y Servicios, Usuarios y Grupos, Hardware, Configuración de Seguridad, Eventos del Sistema, Software Instalado, Active Directory (en entornos de dominio). 
+- Todo se expone mediante **clases, instancias y métodos** consultables con distintos lenguajes y herramientas.
+- Sirve para **Administración** (inventario de equipos, gestion remota de sistemas, automatización de tareas administrativas, monitoreo de estado y rendimiento, etc), **Obervabilidad** (obtener métricas del sistema, detectar cambios de configuración, auditar actividad, etc), **Automatización** (scripts PowerShell, VBScript, C#, etc, herramientas de gestión, SCCM, Intune, SCOM, etc.) y **Seguridad** (recolección de información forense, detección de actividad anómala, persistencia legitima o maliciosa, ejecución remota de comandos, etc). 
+- El proceso que se encarga de **WMI** es `winmgmt.exe` gestiona consultas, eventos y proveedores.
+- **Objetos Administrados**: Son los recursos del sistema (como un disco duro, un servicio o una tarjeta de red, etc). 
+- **Providers**: Actúan como intermediarios que recogen los datos de los objetos y los envían al **WMI**. **DLLs** que exponen información específica, traducen l a consulta **WMI** a **datos reales del sistema**.
+- **Repository**: Una base de datos donde se almacena la definición de las clases y la estructura de los datos. Es la base de datos local de **WMI** la cual generalmente se ubica en `C:\Windows\System32\wbem\Repository`
+- **Namespaces**, los datos **WMI** están organizados en **namespaces** (similar a rutas): 
+	- `root\cimv2`: el más usado (procesos, servicios, OS)
+	- `root\securitycenter2`: antivirus, firewall
+	- `root\subscription`: eventos persistentes
+	- `root\directory\ldap`: active directory
+- Con respecto a **WMI Event Subscriptions**: permite ejecutar una acción automáticamente cuando sucede algo ejemplo: "Si se inserta un USB, ejecuta este script". Los atacantes utilizan esto porque no requiere que haya un proceso corriendo continuamente.
+- **Clases, instancias y métodos**: Ejemplo, Clase: `Win32_Process`, Instancia: `notepad.exe`, Métodos: `Create()`, `Terminate()`.
+- Las herramienta más común para interactuar con **WMI**  es **PowerShell**: 
+	- `Get-CimInstance Win32_Process` --> PowerShell
+	- `Get-CimInstance Win32_Process -ComputerName PC01` --> De manera remota, la cual usará **WinRM** (más moderno) o **DCOM** (legacy).
