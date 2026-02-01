@@ -43,7 +43,7 @@
 - Un **Dominio en Windows** es una **colección lógica de objetos** (como usuarios, grupos, equipos, impresoras) que se administran de forma centralizada dentro de una red. 
 - Esto se realiza mediante **Windows Active Directory (AD)**. Ya no se depende de una base local (**SAM o Security Accounts Manager**), sino de una base de datos replicada entre **Domain Controllers**.
 - **Active Directory (AD)** es un servicio de directorio que actúa como una base de datos centralizada para gestionar usuarios, equipos, grupos y otros recursos en una red de dominio Windows.
-- Los **Domain Controllers (DC)** son servidores que ejecutan el rol de **Active Directory**. Utilizan protocolos como **Kerberos** para la autenticación y **LDAP** para consultar a la base de datos de objetos.
+- Los **Domain Controllers (DC)** son servidores que ejecutan el rol de **Active Directory**, administran la autenticación, autorización y políticas de seguridad de los usuarios dentro de un dominio de red, verifican las credenciales de los usuarios y controlan el acceso a recursos de red como archivos, aplicaciones e impresoras. Utilizan protocolos como **Kerberos** para la autenticación y **LDAP** para consultar a la base de datos de objetos.
 - Al estar en el dominio el usuario se autentica una vez ante el **DC** y este le otorga un **"ticket"** para acceder a impresoras, archivos o programas en toda la red sin pedir la contraseña nuevamente, a esto se le conoce como **Single Sign-On (SSO)**. 
 - Las configuraciones enviadas por el **DC** se conocen como **GPO (Group Policy Objects)**. Estas políticas pueden definir desde el fondo de pantalla hasta restricciones críticas de seguridad en miles de computadoras a la vez.
 - Cuando un usuario en el **Domain** inicia sesión:
