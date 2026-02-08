@@ -3,7 +3,7 @@
 - NTFS almacena archivos como serie de atributos, como el nombre del archivo o las marcas de tiempo (timestamp). Estos datos los cuales el archivo contiene se almacenan en el atributo **$DATA** la cual es conocida como un flujo de datos (Data Stream). 
 - Cada archivo en NTFS tiene al menos un flujo de datos principal, conocido como el **flujo de datos predeterminado**.
 - **$DATA** seria el Default Stream (flujo de datos predeterminado). Por ejemplo cuando un archivo de texto se abre y se escribe algo se guarda en $DATA. Es lo que Windows suma al tamaño del archivo (bytes).
-##### Alternate Data Streams or ADSss
+##### Alternate Data Streams or ADSs
 - Es posible crear flujos de datos alternativos (Alternate Data Streams) que permiten almacenar información adicional como metadatos, comentarios o incluso archivos completos, sin que el tamaño del archivo principal cambie ni sea visible a través de Windows Explorer. 
 - Windows lo utiliza de forma legitima. Por ejemplo cuando se descarga un archivo de internet, Windows le pega un ADS llamado `:Zone.Identifier` ADS por el cual Windows identifica que el archivo viene de internet. 
 - No están disponibles directamente desde el entorno gráfico, pero pueden accederse mediante líneas de comandos (como `streams.exe`), PowerShell, o herramientas de análisis forense.
