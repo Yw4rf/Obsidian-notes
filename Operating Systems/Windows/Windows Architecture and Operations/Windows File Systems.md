@@ -13,7 +13,7 @@
 - NTFS es el sistema de archivos más usado por los sistemas Windows debido a varias razones, este mismo soporta gran cantidad de archivos y particiones y es compatible con otros sistemas operativos.
 - Es confiable y tiene caracteristicas como la recuperación de archivos. Más importante aún, las caracteristicas de seguridad.
 - El control de acceso a datos es logrado por Security Descriptors. A diferencia de sistemas viejos como FAT32, NFTS permite decir exactamente qué usuario puede leer, escribir o borrar un archivo específico. Estos Security Descriptors contienen propiedad y permisos de archivos hasta el nivel de archivo. 
-- NTFS también tiene muchas marcas de tiempo (time stamps) para rastrear la actividad de archivos, también conocido como **MACE (Modify, Access, Create and Entry Modified)** las cuales son generalmente utilizadas en analisis forenses para determinar el historial de un archivo o carpeta. Siendo **M**odify: Última vez que se cambió el contenido. **A**ccess: Última vez que se abrió. **C**reate: Cuándo se creó. **E**ntry Modified: Cuándo cambió la información del archivo en la tabla del sistema (metadatos).
+- NTFS también tiene muchas marcas de tiempo (time stamps) para rastrear la actividad de archivos, también conocido como **MACE (Modify, Access, Create and Entry Modified)** las cuales son generalmente utilizadas en analisis forenses para determinar el historial de un archivo o carpeta. Siendo **M**odify: Última vez que se cambió el contenido. **A**ccess**: Última vez que se abrió. **C**reate: Cuándo se creó. **E**ntry Modified: Cuándo cambió la información del archivo en la tabla del sistema (metadatos).
 - NTFS ademas soporta cifrado para garantizar la seguridad del dispositivo de almacenamiento.
 
 ##### NTFS Structures
