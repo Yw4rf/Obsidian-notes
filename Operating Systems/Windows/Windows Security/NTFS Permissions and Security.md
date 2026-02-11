@@ -1,10 +1,25 @@
 #### NTFS Permissions
-- Es el sistema de archivos de Windows, este implementa un sistema de seguridad basado en **Access Control Lists (ACLs)**, este sistema es una lista de entradas de control de acceso **(ACEs)** que define los permisos de acceso a objetos en el sistema de archivos NTFS, como archivos y carpetas. Cada **ACE** específica una identidad (usuario, grupo, o equipo) y los derechos de acceso **allow** y **deny**, como lectua, escritura, ejecución o eliminación. 
+- Es el sistema de archivos de Windows. este implementa un sistema de seguridad basado en **Access Control Lists (ACLs)**, este sistema es una lista de entradas de control de acceso **(ACEs)** que define los permisos de acceso a objetos en el sistema de archivos NTFS, como archivos y carpetas. Cada **ACE** específica una identidad (usuario, grupo, o equipo) y los derechos de acceso **allow** y **deny**, como lectua, escritura, ejecución o eliminación. 
 - Cada objeto (archivo o carpeta) tiene asociado un **Security Descriptor** que contiene dos tipos principales de **ACLs**: 
 	- **DACL (Discretionary Access Control List)**: Es una lista ordenada de **ACEs** que controlan quién puede acceder. 
 		- Cada **ACEs** contiene **SID** (usuario/grupo), **tipo de permiso** `allow` o `Deny`, **máscara de acceso** (qué bits/permiso es), **flags de herencia/propagación** (Object/Container, No-propagate, Inherit-only), **si es explicita o heredada**. 
 	- **SACL (System Access Control List)**: Controla la **auditoría** ([[Windows Event Viewer#Auditing]])
 		- Define que tipo de acceso, si se registra el **éxito, fracaso o ambos**, qué usuario o grupo está siendo auditado. Cuando se produce un acceso que coincide con una entrada en **SACL**, se genera un **evento de auditoría** en el **registro de seguridad** ([[The Windows Registry]]) del **Windows Event Viewer**. 
+
+~~~
+ARCHIVO/CARPETA
+    └── Security Descriptor (contenedor principal)
+            ├── Owner SID (quién es el dueño)
+            ├── Group SID (grupo primario, legacy de POSIX)
+            ├── DACL (lista de control de acceso discrecional)
+            │     ├── ACE #1 (entrada individual)
+            │     ├── ACE #2 (entrada individual)
+            │     └── ACE #n (entrada individual)
+            └── SACL (lista de control de auditoría)
+                  ├── ACE #1 (entrada de auditoría)
+                  └── ACE #n (entrada de auditoría)
+~~~
+
 - **Standar Permissions**: Los seis permisos básicos son: 
 	1. **Full Control** (control total del objeto incluyendo cambios de permisos y ownership)
 	2. **Modify** (lectura, escritura, ejecución y eliminación) 
@@ -72,5 +87,11 @@
 - **Ownership and Privileges**: El **owner** de un objeto puede cambiar permisos incluso si no tiene **Change Permissions** en la **ACL** actual. **Take Owner Privilege** debe estar restringido debido a ello. Por defecto, solo **Administrators** pueden tomar ownership de cualquier archivo. 
 - **Event IDs críticos para la seguridad**: 
 ~~~txt
-Event ID 4663 (An attempt was made to access an object), 4656 (A handle to an object was requested), 4660 (An object was deleted), 4670 (Permissions on an object were changed), 4664 (An attempt was made to create a hard link), y 5145 (A network share object was checked to see whether client can be granted desired access). También Event ID 4907 (Auditing settings on object were changed) indica que alguien modificó la SACL misma, potencialmente para ocultar actividad.
+EventID 4663 (An attempt was made to access an object)
+EventID 4656 (A handle to an object was requested)
+EventID 4660 (An object was deleted)
+EventID 4670 (Permissions on an object were changed)
+EventID 4664 (An attempt was made to create a hard link) 
+EventID 5145 (A network share object was checked to see whether client can be granted desired access)
+EventID 4907 (Auditing settings on object were changed) indica que alguien modificó la SACL misma, potencialmente para ocultar actividad.
 ~~~
