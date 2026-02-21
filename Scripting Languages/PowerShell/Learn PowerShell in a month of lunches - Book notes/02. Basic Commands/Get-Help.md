@@ -68,4 +68,10 @@ Es posible observar:
 - **Parameter Sets**: Un parameter set es una combinación válida y mutuamente exclusiva de parámetros. Cada línea bajo SYNTAX es un set distinto.
 	- **No es posible mezclar parámetros de diferentes conjuntos**. 
 		- Si se utiliza un parámetro que pertenece únicamente al "Conjunto A", el motor de PowerShell invalidará cualquier intento de utilizar parámetros exclusivamente al "Conjunto B".
-	- **Default Parameter Set**: Si no se específican parámetros que identifiquen un conjunto único, el motor intentará ejecutar el conjunto definido como predeterminado en la metadata del cmdlet.
+	- **Default Parameter Set**: Si no se especifican parámetros que identifiquen un conjunto único, el motor intentará ejecutar el conjunto definido como predeterminado en la metadata del cmdlet.
+- **Common Parameters** (Parámetros comunes): Los `[<CommonParameters>]` no son  definidos por el desarrollador del cmdlet, si no que son heredados de la clase base `PSCmdlet`. Son gestionados directamente por el motor de PowerShell para controlar el flujo de información y errores. Los más críticos son:
+	1. `-Verbose`: activa el stream de escritura detallada (`Write-Verbose`). 
+	2. `-Debug`: detiene la ejecución en cada paso para la inspección (usa `$DebugPreference`)
+	3. `-ErrorAction`: define el comportamiento ante errores no terminantes (`Continue, Stop, SilentlyContinue`).
+	4. `-OutVariable`: captura la salida del comando en una variable sin romper la canalización (pipeline).
+	5. `-WhatIf / -Confirm`: solo presentes si el cmdlet declara `SupportsShouldProcess`
