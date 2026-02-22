@@ -1,0 +1,20 @@
+#### PowerShell Security
+- PowerShell **solo deja realizar ciertas acciones si se tienen los permisos para hacerlo**. E.g: Si no es posible crear nuevos usuarios en Active Directory con la consola gráfica, entonces no será posible hacerlo tampoco con PowerShell.  
+	- PowerShell tampoco permite realizar bypass de ningún permiso existente. Las acciones están restringidas por las políticas de seguridad vigentes y requieren que se ajusten a los roles y permisos de la cuenta de usuario en uso
+- La seguridad en PowerShell se diseña principalmente para evitar que los usuarios ejecuten scripts sin darse cuenta**. Aún así, **no hay medidas en PowerShell que puedan prevenir a un usuario decidido de ejecutar un script**. Si alguien tiene la intención de ejecutar algo, podrá hacerlo, siempre que tenga los permisos necesarios.
+	- La idea es proteger a los usuarios de **fuentes no confiables**
+- Las **políticas de ejecución (Execution Policies)**, como las que restringen la ejecución de scripts no firmados, son una forma de implementar esta prevención. Sin embargo, un usuario que conozca estas políticas y cómo cambiarlas aún podrá eludirlas.
+
+#### Execution Policy
+- La primera medida de seguridad de PowerShell es la **política de ejecución (Execution Policy)**. El ajuste por defecto de esta política en Windows 10 es `Restricted`. En Windows Server por defecto es `RemoteSigned`. En dispositivos **NO** Windows la política de ejecución no se aplica (not enforced). 
+- Para ver la política de ejecución actual: `Get-ExecutionPolicy`
+	1. `Restricted`: Política por defecto de PowerShell. **No se permiten ejecución de scripts**, solo se ejecutan un par de scripts seleccionados por Microsoft que proporcionan la configuración predeterminada de PowerShell. Estos scripts de Microsoft deben estar firmados digitalmente y no se ejecutarán si han sido modificados.  
+	2. `AllSigned`: Permite la **ejecución de scripts que se encuentran firmados digitalmente**. Ejecutará cualquier script firmado por una autoridad de certificación de confianza (CA). 
+	3. `RemoteSigned`: Esta política permite la **ejecución de scripts según su origen**. Se permiten todos los scripts locales (ubicados en el sistema local), a su vez, se permiten scripts remotos únicamente si están firmados digitalmente por una autoridad de certificación de confianza (CA).
+	4. `Unrestricted`: Permite la **ejecución de todos los scripts sin restricción alguna** sea local o remoto, se ejecutará sin firma digital.
+	5. `Bypass`: Política diseñada para los desarrolladores que integran PowerShell en sus aplicaciones. **Ignora cualquier política de ejecución configurada y permite la ejecución de scripts libremente**. Es como decirle a PowerShell que ya se ha manejado el tema de la seguridad.
+- Es posible cambiar la política de ejecución de 3 maneras:
+	1. Mediante **el comando**: `Set-ExecutionPolicy [command]`. Esto cambia el ajuste en el registro de Windows `HKEY_LOCAL_MACHINE` ([[The Windows Registry#The Registry]]). E.g: `Set-ExecutionPolicy Restricted`.
+		- Usualmente el comando necesita ser ejecutado con permisos de administrador, debido a que los usuarios no cuentan con permisos para escribir en el registro.
+	2. Usando **GPOs (Group Object Policy)**. En entornos de Active Directory, esta opción permite aplicar configuraciones PowerShell a multiples sistemas. Desde Windows Server 2008 R2 se incluyen configuraciones relacionadas con PowerShell en los GPOs. Se ubican en `Computer Configuration --> Policies --> Administrative Templates --> Windows Components --> Windows PowerShell`. Esta configuración anula cualquier ajuste local, `Set-ExecutionPolicy` no tiene efecto.
+	3. Ejecutando `powershell.exe` o `pwsh.exe` con `-ExecutionPolicy [command]`. Al ejecutar esto, la política de ejecución especificada **sobrescribe los ajustes en la política de ejecución local o GPO específica en esa instancia, solo se aplica a la sesión actual de PowerShell**. E.g: `pwsh.exe -ExecutionPolicy RemoteSigned`. 
