@@ -184,7 +184,8 @@ Content-Type: image/jpeg
 
 ...$Content = @'
 
-$hexString_bbb = "4D_5A_90_00_...(mucho hexadecimal) 00_00"
+$hexString_bbb = "4D_5A_90_00_03_...(mucho hexadecimal)_00_00"
+$hexString_pe = "4D_5A_90_00_03_...(mucho hexadecimal)_00_00"
 
 Sleep 5
 
@@ -272,4 +273,18 @@ $taskFolder = $scheduler.GetFolder("\")
 $taskFolder.RegisterTaskDefinition("Update Edge", $taskDefinition, 6, $null, $null, 3)
 ~~~
 
-Se verifica el **SHA256** en [CyberChef]()
+Se verifica el **SHA256** (El identificador criptográfico inmutable de un artefacto difital, como la "huella digital" exacta del ejecutable). 
+
+Para analizar el hash en este caso se utiliza un script en PowerShell para convertir la linea `$hexString_bbb = "4D_5A_90_00_03_00_00_00_04_00_..."` hexadecimal a binario: 
+
+~~~PowerShell
+$hexString_bb = "4D_5A_90_00_03_00_00_00_04_00_..."
+$bytes = $hexString_pe -split '_' | ForEach-Object { [byte]([convert]::ToInt32($_, 16)) }
+[IO.File]::WriteAllBytes("payload.exe", $bytes)
+~~~
+
+El script genera un ejecutable `payload.exe` el cuál es posible obtener su hash mediante el comando de PowerShell `Get-FileHash [Path] -Algorithm SHA256`
+
+> Es altamente recomendable realizar este tipo de cosas en un entorno controlado, como una máquina virtual, etc.
+
+![[XMLRat-5 1.png]]
