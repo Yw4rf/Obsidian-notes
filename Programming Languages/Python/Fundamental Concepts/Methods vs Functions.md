@@ -14,5 +14,3 @@ c = Contador()
 c.incrementar(5)   # invocación del método sobre la instancia
 print(c.valor)     # 5
 ~~~
-
-> Note: Una instancia es un objeto creado a partir de una clase

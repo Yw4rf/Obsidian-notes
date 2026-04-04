@@ -22,4 +22,5 @@ En el modelo Object-Oriented ([[Introducing Object-Oriented]]) los tipos de obje
 - Cada **galleta individual** producida con ese molde → eso es un **Objeto**
 El molde existe **una sola vez**. Las galletas pueden existir **miles de veces**, cada una siendo una cosa concreta e individual.
 
+> Clase: Plano/Molde que define los atributos y métodos de un tipo de objeto. Es un concepto estático (no ocupa espacio en memoria) que actúa como plano/tipo. 
 
