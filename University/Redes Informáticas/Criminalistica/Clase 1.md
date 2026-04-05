@@ -78,4 +78,46 @@ La criminalística tiene cuatro dimensiones que la definen:
 > Escena del hecho → **Indicio** (orienta) → análisis → **Evidencia** (confirma) → canal legal → **Prueba** (vale en juicio) El **medio de prueba** es ese canal legal.
 
 ## El Método Criminalístico (5 Pasos)
+1. **Preservación**: Conservar la escena instacta. 
+2. **Observación**: Reconocimiento visual del lugar.  
+3. **Fijación**: Documentar indicios antes de moverlos. 
+4. **Levantamiento y embalaje**: Recolección y empaque adecuado. 
+5. **Garantía de integridad**: Cadena de custodia. Garantiza que el indicio no fue alterado desde que fue hallado hasta el proceso judicial. 
 
+## Las 6 Preguntas de Oro
+¿El Qué?, ¿Quién?, ¿Cuándo?, ¿Cómo?, ¿Dónde?, ¿Con Qué? Toda investigación criminalística se oriente respondiendo estas preguntas.      
+1. **¿Qué?**: Responde al **qué sucedió?** Fue un hecho natural, accidental, delictivo o provocado? Qué armas usaron? 
+2. **¿Quién?**: Responde a la **identidad de los sujetos activos** (quién comete el hecho) y de las victimas o involucrados.
+3. **¿Cómo?**: Responde a **la dinámica del hecho**, la forma y secuencia de las acciones realizadas para cometer el delito. 
+4. **¿Cuándo?**: Responde a **la cronología**, hora, día, semana o incluso años transcurridos del hecho.  
+5. **¿Dónde?**: Responde a **la ubicación**, dónde ocurrió el hecho?, el cuerpo fue trasladado? es el lugar del hecho o un lugar de hallazgo? 
+6. **¿Con Qué?**: Responde a **los instrumentos utilizados** (tipo de arma, herramienta), que se vinculan directamente con los indicios. 
+
+## Principios de la Criminalística
+Son 7 los principios que **rigen toda investigación**: 
+1. **Uso**: Permite identificar todo tipo de agente o instrumento utilizado en el hecho. 
+2. **Producción**: Ante un crimen, el agente siempre deja rastros materiales (fundamental la búsqueda).  
+3. **Intercambio**: En la escena siempre hay un intercambio de materiales entre la víctima, victimario y lugar (principio de _Locard_) 
+4. **Correspondencia**: En el cuerpo de la víctima aparecen marcas que delatan el instrumento empleado. 
+5. **Reconstrucción**: Con los indicios reunidos se reconstruye el hecho paso a paso. 
+6. **Probabilidad**: Tras la reconstrucción se calcula el grado de aproximación a la verdad (alta, media, baja o nula). 
+7. **Certeza**: Determina la certeza indiscutible de la investigación luego de haberla finalizado y haber valorado cualitativa y cuantitativamente todos los indicios.  
+
+## Lugar del Hecho y de Enlace
+Tres conceptos geográficos clave: 
+1. **Lugar del Hecho**: El espacio físico donde ocurrió el evento presuntamente delictivo. Cuando la investigación confirma que hay un delito, pasa a llamarse escena del delito. 
+2. **Lugar de Hallazgo**: Es donde se encuentran indicios o evidencias de un delito **cometido en otro lugar**. E.g: el cuerpo aparece en un descampado pero el homicidio ocurrió en un departamento.
+3. **Lugar de Enlace**: Es el espacio que conecta los dos anteriores: Donde se encuentran indicios que relacionan el lugar del hecho con el de hallazgo (un camino, un auto, un pasillo)
+
+## Preservación y Delimitación Perimetral
+La escena se divide en tres zonas concéntricas: 
+1. **Zona Crítica (Interior)**: El cerco más importante, delimita directamente la escena y contiene los indicios. Solo ingresan especialistas forenses, el juez o fiscal y testigos necesarios. 
+2. **Zona Restringida (Exterior)**: Rodea a la zona crítica. Funciona como zona de amortiguación, su función es evitar que el personal técnico contamine la zona crítica al entrar y salir. Solo para personal relacionado con la investigación: interventores, personal policial jerárquico, peritos de apoyo. 
+3. **Zona Amplia (Externa)** El anillo más externo. Es de libre circulación para la prensa, familiares y curiosos. Es el punto más alejado del hecho.  
+
+## Campos de la Criminalística
+La disciplina abarca áreas muy diversas, cada una con especialistas propios: 
+- Balística (armas de fuego)
+- Documentología (autenticidad de documentos)
+- Papiloscopía (huellas dactilares, palmares y plantares) 
+- Fotografía forense (registro visual), Planimetría (croquis y planos de la escena), Química forense, Accidentología, Medicina legal y forense, Toxicología (drogas, venenos, alcohol), Entomología forense (insectos para datación de la muerte), Antropología forense (restos óseos), Odontología forense y Psicología forense.
