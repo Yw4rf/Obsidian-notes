@@ -122,15 +122,33 @@ $$
 
 7. Un calefactor de $P = 1100\,W$ está diseñado para funcionar con un voltaje de $V = 220\,V$.
 
+$$
+\begin{align*}
+R &= \frac{V²}{P} \\ \\  
+P &= \frac{V²}{R} \\ \\
+Disminución &= \frac{Diferencia}{Potencia Original}​ ⋅ 100
+\end{align*}
+$$
+
 - Calcule la resistencia del calefactor.
 
 $$
 \begin{align*}
-P V
+R = \frac{(220V)^2}{1100W} = 44\ohm  
 \end{align*}
 $$
 
 - Si el voltaje baja a $V = 200\,V$, calcule en qué porcentaje disminuye la potencia consumida.
+
+$$
+\begin{align*}
+P &= \frac{(200V)^2}{1100W} ​≈ 909W \\
+
+Diferencia &= 1100W - 909W = 190,91W \\
+
+Disminución &= (\frac{190,91W}{1100} \times 100) ≈ 17,36\%    
+\end{align*}
+$$
 
 ---
 
@@ -148,6 +166,51 @@ b) $R_1$, $R_2$ y $R_3$ en paralelo.
 
 c) $R_1$, $R_2$ y $R_3$ en serie.  
 
+$$
+\begin{align*}
+Serie &: R_{eq} = R_1 + R_2 + R_3 \\ \\
+Paralelo &: \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
+\end{align*}
+$$
+
+- a) $R_1$ en paralelo con $R_2$, y $R_3$ en serie con ambas.
+
+$$
+\begin{align*}
+\frac{1}{R_{12}} &= \frac{1}{3\Omega} + \frac{1}{6\Omega} \\
+
+\frac{1}{R_{12}} &= \frac{2}{6} + \frac{1}{6} = \frac{3}{6} \\
+
+R_{12} &= 2\Omega \\ \\
+
+R_{eq} &= R_{12} + R_3 \\
+
+R_{eq} &= 2\Omega + 8\Omega = 10\Omega
+\end{align*}
+$$
+
+- b) $R_1$, $R_2$ y $R_3$ en paralelo.
+
+$$
+\begin{align*}
+\frac{1}{R_{eq}} &= \frac{1}{3\Omega} + \frac{1}{6\Omega} + \frac{1}{8\Omega} \\
+
+\frac{1}{R_{eq}} &= 0,333 + 0,167 + 0,125 \\
+
+\frac{1}{R_{eq}} &≈ 0,625 \\
+
+R_{eq} &≈ 1,6\Omega
+\end{align*}
+$$
+
+- c) $R_1$, $R_2$ y $R_3$ en serie.
+
+$$
+\begin{align*}
+R_{eq} = 3\Omega + 6\Omega + 8\Omega = 17\Omega
+\end{align*}
+$$
+
 ---
 
 9. Para el caso (a) del ejercicio anterior:
@@ -156,12 +219,99 @@ c) $R_1$, $R_2$ y $R_3$ en serie.
 - Calcule el voltaje en cada resistencia.
 - Calcule la potencia en cada resistencia.
 
+$$
+\begin{align*}
+I &= \frac{V}{R} \\ \\
+P &= V \cdot I \\ \\
+P &= I^2 R
+\end{align*}
+$$
+
+- Corriente total del circuito.
+
+$$
+\begin{align*}
+I_{total} = \frac{220V}{10\Omega} = 22A
+\end{align*}
+$$
+
+- Corriente en cada resistencia.
+
+$$
+\begin{align*}
+I_3 &= 22A \\ \\
+
+V_3 &= I_3 \cdot R_3 = 22A \cdot 8\Omega = 176V \\ \\
+
+V_{12} &= 220V - 176V = 44V \\ \\
+
+I_1 &= \frac{44V}{3\Omega} ≈ 14,67A \\
+
+I_2 &= \frac{44V}{6\Omega} ≈ 7,33A
+\end{align*}
+$$
+
+- Voltaje en cada resistencia.
+
+$$
+\begin{align*}
+V_1 &= 44V \\
+
+V_2 &= 44V \\
+
+V_3 &= 176V
+\end{align*}
+$$
+
+- Potencia en cada resistencia.
+
+$$
+\begin{align*}
+P_1 &= 44V \cdot 14,67A ≈ 645W \\
+
+P_2 &= 44V \cdot 7,33A ≈ 323W \\
+
+P_3 &= 176V \cdot 22A = 3872W
+\end{align*}
+$$
+
 ---
 
 10. Para el caso en que las tres resistencias se conectan en paralelo:
 
 - Calcule la corriente en cada resistencia si el sistema se conecta a $V = 220\,V$.
 - Calcule la potencia en cada resistencia.
+
+$$
+\begin{align*}
+I &= \frac{V}{R} \\ \\
+P &= V \cdot I
+\end{align*}
+$$
+
+- Corriente en cada resistencia.
+
+$$
+\begin{align*}
+I_1 &= \frac{220V}{3\Omega} ≈ 73,33A \\
+
+I_2 &= \frac{220V}{6\Omega} ≈ 36,67A \\
+
+I_3 &= \frac{220V}{8\Omega} = 27,5A
+\end{align*}
+$$
+
+- Potencia en cada resistencia.
+
+$$
+\begin{align*}
+P_1 &= 220V \cdot 73,33A ≈ 16133W \\
+
+P_2 &= 220V \cdot 36,67A ≈ 8067W \\
+
+P_3 &= 220V \cdot 27,5A = 6050W
+\end{align*}
+$$
 
 ---
 
@@ -178,13 +328,77 @@ c) La potencia consumida por la lámpara.
 
 d) La potencia disipada en el interior de la batería.  
 
+$$
+\begin{align*}
+I &= \frac{V}{R + r} \\ \\
+V_R &= I \cdot R \\ \\
+P &= V \cdot I \\ \\
+P &= I^2 R
+\end{align*}
+$$
+
+- a) Corriente en la lámpara.
+
+$$
+\begin{align*}
+I = \frac{12V}{11\Omega + 1\Omega} = \frac{12}{12} = 1A
+\end{align*}
+$$
+
+- b) Voltaje en la lámpara.
+
+$$
+\begin{align*}
+V_R = 1A \cdot 11\Omega = 11V
+\end{align*}
+$$
+
+- c) Potencia consumida por la lámpara.
+
+$$
+\begin{align*}
+P = 11V \cdot 1A = 11W
+\end{align*}
+$$
+
+- d) Potencia disipada en la batería.
+
+$$
+\begin{align*}
+P = I^2 r = (1A)^2 \cdot 1\Omega = 1W
+\end{align*}
+$$
+
 ---
 
 12. ¿Qué diferencia de potencial se debe aplicar a un reóstato de $R = 30\,\Omega$ para que circule una corriente de $I = 5\,A$?
 
+$$
+\begin{align*}
+V = I \cdot R
+\end{align*}
+$$
+
+- Cálculo del voltaje.
+
+$$
+\begin{align*}
+V = 5A \cdot 30\Omega = 150V
+\end{align*}
+$$
 ---
 
 13. Indicar qué disciplinas abarca la Teleinformática.
+
+La **Teleinformática** es la disciplina que combina la **informática** y las **telecomunicaciones** para permitir el intercambio de información entre sistemas computacionales a través de redes de comunicación.
+
+Abarca principalmente:
+
+- **Informática**: procesamiento, almacenamiento y gestión de datos.
+- **Telecomunicaciones**: transmisión de información a distancia mediante distintos medios.
+- **Redes de computadoras**: interconexión de dispositivos para compartir información y recursos.
+- **Protocolos de comunicación**: reglas que permiten la comunicación entre sistemas.
+- **Sistemas de transmisión de datos**: tecnologías y medios físicos utilizados para transportar información.
 
 ---
 
@@ -192,28 +406,101 @@ d) La potencia disipada en el interior de la batería.
 - ¿Qué funciones cumple?  
 - ¿Cómo está constituida?
 
+La **UIT-T (Unión Internacional de Telecomunicaciones – Sector de Normalización)** es un organismo internacional encargado de **desarrollar normas técnicas para las telecomunicaciones y las redes de datos**.  
+Anteriormente se denominaba **CCITT (Comité Consultivo Internacional Telegráfico y Telefónico)**.
+
+**Funciones principales**
+
+- Elaborar **estándares internacionales** de telecomunicaciones.
+- Garantizar la **interoperabilidad entre redes y equipos** de distintos fabricantes.
+- Establecer **recomendaciones técnicas** para transmisión de datos, telefonía e Internet.
+- Facilitar el **desarrollo global de las telecomunicaciones**.
+
+**Cómo está constituida**
+
+La UIT-T está formada por:
+
+- **Estados miembros** (gobiernos).
+- **Empresas del sector de telecomunicaciones**.
+- **Instituciones académicas y organismos técnicos**.
+- **Grupos de estudio**, que analizan temas específicos y elaboran recomendaciones.
+
 ---
 
 15. ¿Cómo se denomina la arquitectura de red en la cual un equipo central ejecuta todas las acciones de procesamiento?  
 - Indique sus características principales.
 
+Esta arquitectura se denomina **procesamiento centralizado** o **arquitectura centralizada**.
+
+**Características principales**
+
+- Existe un **equipo central (host o mainframe)** que realiza todo el procesamiento.
+- Los demás equipos funcionan como **terminales** con capacidad limitada.
+- Los **datos y programas** se encuentran almacenados en el sistema central.
+- Las terminales se utilizan principalmente para **entrada y salida de información**.
+- Facilita el **control y administración centralizada**, pero genera **dependencia del sistema central**.
+
 ---
 
 16. Definir transmisión de datos e indicar qué tipos de señales se utilizan para llevarla a cabo.
 
+La **transmisión de datos** es el proceso mediante el cual **información digital o analógica se envía desde un dispositivo emisor hacia un receptor a través de un medio de comunicación**.
+
+Para realizar esta transmisión se utilizan principalmente dos tipos de señales:
+
+- **Señales analógicas**  
+  Son señales continuas en el tiempo cuya amplitud puede tomar infinitos valores. Se utilizan tradicionalmente en sistemas de telecomunicaciones como radio o telefonía.
+
+- **Señales digitales**  
+  Son señales discretas que representan la información mediante **niveles binarios (0 y 1)**. Son utilizadas en redes de computadoras y sistemas informáticos modernos.
+
 ---
 
 17. Graficar la topología de una red WAN empresarial con cuatro sitios (cada uno con una o más redes LAN) interconectados a Internet en forma centralizada.
+            Internet
+                |
+           Router Central
+                |
+    ------------------------------
+    |            |             |
+ Sitio A      Sitio B       Sitio C
+  (LAN)        (LAN)         (LAN)
+    |
+ Sitio D
+  (LAN)
+
+
+En esta topología:
+
+- Todos los **sitios remotos** se conectan a un **punto central**.
+- El **router o gateway central** administra la conexión hacia **Internet**.
+- Cada sitio posee **una o más redes LAN internas**.
 
 ---
 
 18. Graficar el esquema básico de un sistema informático de procesamiento centralizado con un mainframe y terminales locales y remotos.
 
+  Terminal Remota  
+                  |  
+                  |
+
+Terminal Local --- Mainframe --- Terminal Local  
+|  
+|  
+Terminal Remota
+
 ---
 
-19. Definir los siguientes organismos de estandarización:
-
-- ISO  
-- IEEE  
-- ANSI  
-- EIA  
+19. Definir los siguientes organismos de estandarización:  
+  
+**ISO (International Organization for Standardization)**    
+Organismo internacional encargado de **desarrollar estándares técnicos globales** en diferentes áreas, incluyendo tecnología, industria y redes. Un ejemplo conocido es el **modelo OSI**.  
+  
+**IEEE (Institute of Electrical and Electronics Engineers)**    
+Organización profesional que desarrolla **estándares técnicos en electrónica, informática y telecomunicaciones**. Es responsable de normas como **IEEE 802 (Ethernet y Wi-Fi)**.  
+  
+**ANSI (American National Standards Institute)**    
+Organismo estadounidense que **coordina y aprueba estándares técnicos** desarrollados por diferentes organizaciones dentro de Estados Unidos.  
+  
+**EIA (Electronic Industries Alliance)**    
+Organización que establece **estándares para la industria electrónica y de telecomunicaciones**, especialmente en **interfaces, conectores y transmisión de datos** (por ejemplo RS-232).
